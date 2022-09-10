@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>create-toy</title>
+</head>
+<body>
+<form action="#"th:action="@{/create-toy}" th:object="${toy}" method="get">
+<div th:each="speelgoed:${toys}">
+    <h5>Name</h5>
+        <p th:text="${speelgoed.name}"></p>
+    <label for="name">Name</label>>
+    <input type="text" th:field="*{name}" id="name" placeholder="Name">
+
+    <h5>Brand:</h5>
+    <p th:text="${speelgoed.brand}"></p>
+        <label for="brand">Brand</label>
+        <input type="text" th:field="*{name}" id="brand" placeholder="Brand">
+
+    <h5>Price:</h5>
+    <p th:text="${speelgoed.price}"></p>
+
+        <label for="price">Price</label>
+        <input type="text" th:field="*{name}" id="price" placeholder="Price">
+    <img th:src="@{/images/{toyImage}(toyImage= ${speelgoed.imageLocation})}">
+
+    <hr>
+
+
+    </div>
+
+</form>
+</body>
+</html>
