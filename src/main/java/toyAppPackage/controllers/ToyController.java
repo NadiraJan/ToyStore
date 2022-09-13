@@ -1,11 +1,13 @@
 package toyAppPackage.controllers;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import toyAppPackage.data.Toy;
+import toyAppPackage.repositories.ToyRepository;
 import toyAppPackage.services.interfaces.ToyService;
+
+import java.util.Scanner;
 
 @Controller
 public class ToyController {
@@ -35,7 +37,7 @@ public class ToyController {
 
 
     @GetMapping("/toy/{id}")
-    public String oneToy(Model model, @PathVariable int id) {
+    public String oneToy(Model model, @PathVariable int id) { //PathVariable kijkt naar {id}
         Toy toy = toyService.getOneById(id);
 
         model.addAttribute("toy", toy);
@@ -46,24 +48,22 @@ public class ToyController {
     @GetMapping("/toys")
     public String allToys(Model model) {
 
-
         model.addAttribute("toys", toyService.getAllToys());
 
         return "toys";
     }
 
-
-  @GetMapping("/create-toy")
-    public String toAddNewToy(){
-        return "create-toy";
+   @GetMapping("addToy")
+   //public String createToy(Model model)
+    public String makeToy(Model model) {
+        model.addAttribute("toy",new Toy());
+        return "addtoy";
     }
 
- /*   @PostMapping("/create-toy")
-    public String addToy(@RequestBody Toy toy) {
-
-        toyService.createToy(toy);
-
-        return "redirect:/toys";*/
-
-
+    @PostMapping("addToy")
+    public String addToy(Toy toy) {
+       toyService.createToy(toy);
+        return "redirect:/toys";
     }
+
+}

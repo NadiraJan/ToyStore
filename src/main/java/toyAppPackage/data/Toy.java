@@ -1,9 +1,9 @@
 package toyAppPackage.data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import lombok.Data;
+import net.bytebuddy.dynamic.loading.InjectionClassLoader;
 
+import javax.persistence.*;
 
 
 @Entity
